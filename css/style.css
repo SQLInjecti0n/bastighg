@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+    .video-container video {
+        /* Make video to at least 100% wide and tall */
+        min-width: 100%;
+        min-height: 100%;
+        /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+        width: auto;
+        height: auto;
+        /* Center the video */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        cursor: url('/cursor2.png'), auto;
+    }
+
+.subtitle {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.subtitle h1 {
+    text-align: center;
+}
+
+.subtitle a {
+    color: #8e8e8e;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.subtitle a:hover, .subtitle a:focus {
+    color: #fff;
+}
+
+.content {
+    position: relative;
+    margin-top: 60%;
+    background-color: #f7f7f7;
+    display: flex;
+}
+
+.content img {
+    transition: 0.5s;
+    width: 150px;
+}
+
+.content img:hover, .content img:focus {
+    width: 200px;
+}
+
+.content div {
+    background-color: #f7f7f7;
+    color: #000;
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+.content div a {
+    color: #000;
+    transition: 0.5s;
+}
+
+.content div a:hover, .content div a:focus {
+    color: #000da1;
+}
+
+.footer {
+    position: relative;
+    display: flex;
+    background-color: #151515;
+    color: #f7f7f7;
+    flex-direction: column;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.footer h1 {
+    color: #fff;
+}
+
+.footer-item {
+    margin-top: 10px;
+}
+
+.footer a {
+    color: #fff;
+    transition: 0.5s;
+}
+
+.footer a:hover, .footer a:focus {
+    color: #006bff;
+}
+
+.copyright {
+    margin-top: 20px;
+}
+
+.rechtlicher-text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#home {
+    font-family: sans-serif;
+    background-color: #fff;
+    border-style: groove;
+    color: #00338e;
+    border-color: #000;
+    margin-top: 2000px;
+    margin-left: 10px;
+}
+
+.content-404 {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#notOnline {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: red;
+}
+
+.twitch span {
+    text-align: center;
+}
+
+.vorschau {
+	background-color: #f7f7f7;
+	z-index: 1;
+}

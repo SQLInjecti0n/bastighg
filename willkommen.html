@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Willkommen | BastiGHG</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- <script src="js/video.js"></script> -->
+    <link rel="icon" href="images/icon.png">
+</head>
+
+    <body>
+        <div class="video-container">
+            <video src="videos/title.mp4" loop autoplay muted id="video" onplay="scrollDown()">
+                <span>Video konnte nicht abgespielt werden!</span>
+            </video>
+        </div>
+
+        <script type="text/javascript">
+            function scrollDown() {
+                console.log("Hier!");
+
+                setTimeout(function() {
+                    window.scroll(0, findPos(document.getElementById("content")))
+                }, 16000);
+            }
+
+            //Finds y value of given object
+            function findPos(obj) {
+                var curtop = 0;
+                if (obj.offsetParent) {
+                    do {
+                        curtop += obj.offsetTop;
+                    } while (obj = obj.offsetParent);
+                    return [curtop];
+                }
+            }
+        </script>
+
+        <div class="subtitle">
+            <h1>GHG</h1>
+            <p style="text-align: center">Kompetenz wird hier gro&szlig; geschrieben!</p>
+        </div>
+
+        <div class="content" id="content">
+            <div class="twitch">
+                <a href="https://www.twitch.tv/bastighg" target="_blank"><img src="images/twitch.png" /></a>
+                <h3><a href="https://www.twitch.tv/bastighg" target="_blank">Twitch</a></h3>
+                <p>
+                    Basti streamt seit dem 14.01.2016 t&auml;glich auf Twitch!<br />
+                    Schaut doch gerne mal vorbei!<br /> Aktuell f&auml;ngt Basti gegen 17 Uhr mit dem Stream an.
+                </p>
+ 
+            </div>
+
+            <div class="youtube">
+                <a href="https://www.youtube.com/user/kompetenzGHG" target="_blank"><img src="images/youtube.png" /></a>
+                <a href="https://www.youtube.com/user/kompetenzGHG" target="_blank"><h3>YouTube</h3></a>
+                <p>
+                    Alle zwei Tage l&auml;dt Basti ein Video auf seinem Hauptkanal <a href="https://www.youtube.com/user/kompetenzGHG">BastiGHG</a> hoch. <br />
+                    Auf seinem Zweitkanal <a href="https://www.youtube.com/channel/UC5rz_m2sWRnpG--KyWHsQTg" target="_blank">Bastian</a> kommen auch Videos.
+                </p>
+            </div>
+
+            <div class="discord">
+                <a href="https://discord.com/invite/ghg" target="_blank"><img src="images/discord.svg"/></a>
+                <a href="https://discord.com/invite/ghg" target="_blank"><h3>Discord</h3></a>
+                <p>
+                    Basti hat einen Discord-Server, auf diesem k&ouml;nnt ihr neben entspanntem Chatten mit anderen Fans auch Vorschl&auml;ge f&uuml;r Streams machen und Challenges, sowie seltene Sachen f&uuml;r Bastis "Seltene Sachen finden" Videoreihe vorschlagen.
+                </p>
+            </div>
+
+            <div class="support">
+                <img src="images/heart.png"/>
+                <h3>Unterst&uuml;tze Basti</h3>
+                <p>Du m&ouml;chtest Basti unterst&uuml;tzen? <br />
+                <a href="https://www.twitch.tv/subs/bastighg" target="_blank">Aboniere ihn auf Twitch</a>, <br />
+                <a href="https://www.tipeeestream.com/bastighg/donation" target="_blank">spende Ihm einen w&auml;hlbaren Betrag</a>, <br />
+                <a href="https://www.yvolve.de/bastighg" target="_blank">kaufe dir schicke Kleidung</a> oder <br />
+                <a href="https://store.badlion.net/shop/BastiGHG" target="_blank">hol dir ein stylisches Badlion-Cape</a> und spare 10 % mit dem Code BastiGHG</p>
+            </div>
+
+            <div class="social">
+                <img src="images/socialmedia.jpg"/>
+                <h3>Soziale Netzwerke</h3>
+                <p>Basti hat diverse soziale Netzwerke. Folgen lohnt sich! <br />
+                <a href="https://www.reddit.com/r/BastiGHG/"><strong>Reddit:</strong> r/BastiGHG</a> <br />
+                <a href="https://twitter.com/kompetenzGHG"><strong>Twitter:</strong> @kompetenzGHG</a> <br />
+                <a href="https://www.instagram.com/babaesti/"><strong>Instagram:</strong> babaesti</a></p>
+            </div>
+        </div>
+
+        <div class="vorschau">
+            <div class="twitch">
+                <span id="notOnline">BastiGHG ist aktuell offline!</span>
+                <div id="twitch-embed"></div>
+
+                <!-- Load the Twitch embed script -->
+                <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+                <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+                <script type="text/javascript">
+                    var embed = new Twitch.Embed("twitch-embed", {
+                        width: 1000,
+                        height: 480,
+                        channel: "bastighg",
+                        // only needed if your site is also embedded on embed.example.com and othersite.example.com
+                        parent: ["embed.example.com", "othersite.example.com"]
+                    });
+
+                    var streamRunning = true;
+                    $("#notOnline").hide();
+                    embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
+                        var player = embed.getPlayer();
+                        player.play();
+                        player.setMuted(true);
+
+                        if (!player.getEnded()) {
+                            setTimeout(function () {
+                                player.setMuted(false);
+                            }, 16500);
+                        } else {
+                            $("#twitch-embed").hide();
+                            $("#notOnline").show();
+                        }
+                    });
+
+                    embed.addEventListener(Twitch.Player.ONLINE, () => {
+                        $("#twitch-embed").show();
+                        $("#notOnline").hide();
+                    });
+
+                    embed.addEventListener(Twitch.Player.OFFLINE, () => {
+                        $("#twitch-embed").hide();
+                        $("#notOnline").show();
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h1>BastiGHG</h1>
+            <div class="footer-item">
+                <h3>Disclaimer:</h3>
+                <p>
+                    Diese Seite ist ein Fanprojekt und <strong>keine</strong> offiziele Webseite von BastiGHG.<br />
+                    Die Inhalte auf der Seite sind nach bestem Wissen und Gewissen gepr&uuml;ft worden, es wird aber nicht garantiert, dass alle Inhalten richtig sind. <br />
+                    Alle Links auf der Seite wurden am 18.05.2020 gepr&uuml;ft, es kann aber nicht garantiert werden, dass die Links noch immer aktuell sind,<br /> weitergehend kann ich nicht gew&auml;hrleisten, dass diese Links keine Malware, etc. beinhalten. <br />
+                </p>
+            </div>
+            <div class="footer-item">
+                <h3>Rechtliches:</h3>
+                <p>
+                    <a href="datenschutz.html">Datenschutzerkl&auml;rung</a><br />
+                    <a href="impressum.html">Impressum</a>
+                </p>
+            </div>
+            <div class="copyright">
+                <p>
+                    Copyright &copy; SQLInjecti0n 2020. Some rights reserved.<br />
+                    F&uuml;r weitere Hinweise siehe <a href="copyright.html">hier.</a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
