@@ -6,3 +6,5 @@ Die Webseite wurde als Fanprojekt für den YouTuber und Streamer BastiGHG entwic
 
 LG
 SQLInjecti0n
+
+P.S. Die Seite ist noch unfertig und ich möchte noch weitere Funktionen hinzufügen und würde mich über Feedback sehr freuen!
